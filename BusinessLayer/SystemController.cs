@@ -176,8 +176,7 @@ namespace BusinessLayer
                                                     break;
 
                                                 case 6:
-                                                    Console.WriteLine("Late start : {0}", chosenAC.LateStart.Item1);
-                                                    Console.WriteLine("Minutes : {0}", chosenAC.LateStart.Item2);
+                                                    Console.WriteLine("Late start minutes : {0}", chosenAC.LateStart);
                                                     int? newLateStart = AirConditioningOptions.LateStart();
                                                     if (newLateStart is not null)
                                                     {
@@ -186,8 +185,7 @@ namespace BusinessLayer
                                                     break;
 
                                                 case 7:
-                                                    Console.WriteLine("Late stop : {0}", chosenAC.LateStop.Item1);
-                                                    Console.WriteLine("Minutes : {0}", chosenAC.LateStop.Item2);
+                                                    Console.WriteLine("Late stop minutes: {0}", chosenAC.LateStop);
                                                     int? newLateStop = AirConditioningOptions.LateStop();
                                                     if (newLateStop is not null)
                                                     {
