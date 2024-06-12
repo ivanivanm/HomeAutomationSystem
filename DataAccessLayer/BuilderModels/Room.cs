@@ -13,6 +13,10 @@ namespace DataAccessLayer.BuilderModels
 {
     public class Room
     {
+        public Room()
+        {
+            
+        }
         public Room(int homeId, string type, string name)
         {
             HomeId = homeId;
