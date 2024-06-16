@@ -65,7 +65,19 @@ namespace DataAccessLayer.CRUD
             {
                 return;
             }
-            _context.Conditioners.Entry(old).CurrentValues.SetValues(entity);
+            
+            old.IsOn = entity.IsOn;
+            old.Temperature = entity.Temperature;
+            old.AirDir = entity.AirDir;
+            old.ACMode = entity.ACMode;
+            old.AirSpeed = entity.AirSpeed;
+            old.LateStart = entity.LateStart;
+            old.LateStop = entity.LateStop;
+            old.Turbo = entity.Turbo;
+            old.Name = entity.Name;
+            old.SelfCleaning = entity.SelfCleaning;
+
+            _context.SaveChanges();
         }
     }
 }

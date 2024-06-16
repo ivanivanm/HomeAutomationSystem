@@ -67,7 +67,13 @@ namespace DataAccessLayer.CRUD
             {
                 return;
             }
-            _context.Fridges.Entry(old).CurrentValues.SetValues(entity);
+            old.IsOn = entity.IsOn;
+            old.Name = entity.Name;
+            old.Temperature = entity.Temperature;
+            old.EnergyEffectiveness = entity.EnergyEffectiveness;
+            old.SmartCooling = entity.SmartCooling;
+
+            _context.SaveChanges();
         }
     }
 }

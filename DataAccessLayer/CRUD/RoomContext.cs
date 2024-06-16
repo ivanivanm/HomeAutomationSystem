@@ -69,7 +69,9 @@ namespace DataAccessLayer.CRUD
                 return;
             }
 
-            _context.Rooms.Entry(old).CurrentValues.SetValues(entity);
+            old.On = entity.On;
+            old.Type = entity.Type;
+            old.Name = entity.Name;
 
             _context.SaveChanges();
             //old.On = entity.On;

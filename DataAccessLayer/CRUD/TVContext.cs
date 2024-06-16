@@ -66,7 +66,14 @@ namespace DataAccessLayer.CRUD
             {
                 return;
             }
-            _context.TVs.Entry(old).CurrentValues.SetValues(entity);
+            old.IsOn = entity.IsOn;
+            old.LightnessFactor = entity.LightnessFactor;
+            old.Volume = entity.Volume; 
+            old.Name = entity.Name;
+            old.NightMode = entity.NightMode;
+
+            _context.SaveChanges();
+
         }
     }
 }

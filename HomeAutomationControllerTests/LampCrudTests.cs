@@ -112,7 +112,6 @@ namespace HomeAutomationControllerTests
             l0.IsOn = false;
             l0.LightnessFactor = 6;
             l0.Name = "l1";
-            l0.RoomId = 2;
 
             _lampContext.Update(l0, true);
 
@@ -121,8 +120,7 @@ namespace HomeAutomationControllerTests
             is0Updated =
                 (l0.IsOn == false) &&
                 (l0.LightnessFactor == 6) &&
-                (l0.Name == "l1") &&
-                (l0.RoomId == 2);
+                (l0.Name == "l1");
 
             //Assert
             Assert.That(is0Updated, "Lamp Update() doesn't work like expected");
