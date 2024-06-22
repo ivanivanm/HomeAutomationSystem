@@ -30,7 +30,14 @@ namespace PresentationLayer.Rooms
             int choice = int.Parse(Console.ReadLine());
             return choice;
         }
-
+        public static Tuple<string,int> DeleteTool()
+        {
+            Console.Write("Please enter the type of tool you want to delete (tv,f,l,ac) : ");
+            string type = Console.ReadLine();
+            Console.Write("Please enter the id of the tool you want to delete : ");
+            int id = int.Parse(Console.ReadLine());
+            return new Tuple<string, int>(type,id);
+        }
         public static int AddTool()
         {
             Console.WriteLine("Choose a tool to add:");

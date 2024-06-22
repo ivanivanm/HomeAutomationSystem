@@ -505,7 +505,7 @@ namespace BusinessGUI
             cbAcMode.AutoCompleteCustomSource.AddRange(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
             cbAcMode.Enabled = false;
             cbAcMode.FormattingEnabled = true;
-            cbAcMode.Items.AddRange(new object[] { "Up", "Down", "Right", "Left" });
+            cbAcMode.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
             cbAcMode.Location = new Point(398, 875);
             cbAcMode.Name = "cbAcMode";
             cbAcMode.Size = new Size(182, 33);
@@ -659,7 +659,7 @@ namespace BusinessGUI
             cbACTemperature.AutoCompleteCustomSource.AddRange(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
             cbACTemperature.Enabled = false;
             cbACTemperature.FormattingEnabled = true;
-            cbACTemperature.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            cbACTemperature.Items.AddRange(new object[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" });
             cbACTemperature.Location = new Point(14, 875);
             cbACTemperature.Name = "cbACTemperature";
             cbACTemperature.Size = new Size(182, 33);
@@ -830,6 +830,7 @@ namespace BusinessGUI
             Enabled = false;
             Name = "HomeAutomationControllerForm";
             Text = "Form1";
+            FormClosed += HomeAutomationControllerForm_FormClosed;
             Load += HomeAutomationControllerForm_Load;
             ResumeLayout(false);
             PerformLayout();

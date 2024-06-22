@@ -36,21 +36,46 @@ namespace BusinessGUI
         public HomeAutomationControllerForm()
         {
             InitializeComponent();
-            this.Enabled = true;
+            EnableApp();
+            _context = new HomeAutomationDbContext();
+            acc = new AirConditionerContext(_context);
+            fc = new FridgeContext(_context);
+            lc = new LampContext(_context);
+            tvc = new TVContext(_context);
+            rc = new RoomContext(_context);
 
-            AdjustInitialVisibility();
             MakeSureDataExists();
             LoadControlsWithInfo();
             GroupControls();
+            AdjustInitialVisibility();
+        }
+        private void EnableApp()
+        {
+            foreach (Control control in this.Controls)
+            {
+                control.Enabled = true;
+            }
+            this.Enabled = true;
         }
         private void HomeAutomationControllerForm_Load(object sender, EventArgs e)
         {
             this.Enabled = true;
 
-            AdjustInitialVisibility();
             MakeSureDataExists();
             LoadControlsWithInfo();
             GroupControls();
+            AdjustInitialVisibility();
+        }
+        private void HomeAutomationControllerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            r1.On = false;
+            r2.On = false;
+            f.IsOn = false;
+            ac.IsOn = false;
+            l.IsOn = false;
+            tv.IsOn = false;
+
+            _context.SaveChanges();
         }
         private void GroupControls()
         {
@@ -70,7 +95,8 @@ namespace BusinessGUI
                 cbACTemperature,lbACTemperature,
                 cbACSpeed,lbACSpeed,
                 cbACDirection,lbACDirection,
-                cbAcMode,lbAcMode
+                cbAcMode,lbAcMode,
+                btnACTurbo,lbACTurbo
             };
             fridgeControls = new List<Control>()
             {
@@ -99,7 +125,7 @@ namespace BusinessGUI
                 lbACName,
                 btnIsACOn,lbIsACOn,
                 lbLampName,
-                btnIsLampOn,btnIsLampOn
+                btnIsLampOn,lbIsLampOn
             };
             homeControls = new List<Control>()
             {
@@ -192,49 +218,49 @@ namespace BusinessGUI
         }
         private void MakeSureDataExists()
         {
-            home = _context.Home.ToList()[0];
-            if (home is null)
+
+            if (_context.Home.ToList().Count == 0)
             {
                 _context.Home.Add(new Home("home 1"));
-                home = _context.Home.ToList()[0];
             }
-            r1 = rc.GetAll(true, false).ToList()[0];
-            if (r1 is null)
+            home = _context.Home.ToList()[0];
+
+            if (rc.GetAll(true, false).ToList().Count == 0)
             {
                 rc.Add(new Room(false, home.ID, "unknown", "room1"));
-                r1 = rc.GetAll(true, false).ToList()[0];
+                rc.Add(new Room(false, home.ID, "unknown", "room2"));
             }
-            r2 = rc.GetAll(true, false).ToList()[1];
-            if (r2 is null)
+            else if (rc.GetAll(true, false).ToList().Count == 1)
             {
                 rc.Add(new Room(false, home.ID, "unknown", "room2"));
-                r2 = rc.GetAll(true, false).ToList()[1];
             }
+            r1 = rc.GetAll(true, false).ToList()[0];
+            r2 = rc.GetAll(true, false).ToList()[1];
 
-            tv = tvc.GetAll(true, false).ToList()[0];
-            if (tv is null)
+
+            if (tvc.GetAll(true, false).ToList().Count == 0)
             {
                 tvc.Add(new TV(r1.Id, false, "tv1"));
-                tv = tvc.GetAll(true, false).ToList()[0];
             }
-            f = fc.GetAll(true, false).ToList()[0];
-            if (f is null)
+            tv = tvc.GetAll(true, false).ToList()[0];
+
+            if (fc.GetAll(true, false).ToList().Count == 0)
             {
                 fc.Add(new Fridge(r1.Id, "fridge1", false));
-                f = fc.GetAll(true, false).ToList()[0];
             }
-            ac = acc.GetAll(true, false).ToList()[0];
-            if (ac is null)
+            f = fc.GetAll(true, false).ToList()[0];
+
+            if (acc.GetAll(true, false).ToList().Count == 0)
             {
                 acc.Add(new AirConditioner(false, "ac1", r2.Id));
-                ac = acc.GetAll(true, false).ToList()[0];
             }
-            l = lc.GetAll(true, false).ToList()[0];
-            if (l is null)
+            ac = acc.GetAll(true, false).ToList()[0];
+
+            if (lc.GetAll(true, false).ToList().Count == 0)
             {
                 lc.Add(new Lamp(false, r2.Id, "l1"));
-                l = lc.GetAll(true, false).ToList()[0];
             }
+            l = lc.GetAll(true, false).ToList()[0];
         }
         private void btnIsRoom1On_Click(object sender, EventArgs e)
         {
@@ -498,7 +524,7 @@ namespace BusinessGUI
 
                 rc.Update(r2, false);
 
-                tbRoom2Name.Text = r1.Name;
+                tbRoom2Name.Text = r2.Name;
             }
         }
         private void tbRoom2Type_KeyPress(object sender, KeyPressEventArgs e)
@@ -697,6 +723,6 @@ namespace BusinessGUI
             //gresha
         }
 
-      
+        
     }
 }

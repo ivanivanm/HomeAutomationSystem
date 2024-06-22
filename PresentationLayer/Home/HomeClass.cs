@@ -33,7 +33,12 @@ namespace PresentationLayer.Home
             int choice = int.Parse(Console.ReadLine());
             return choice;
         }
-
+        public static int DeleteRoom()
+        {
+            Console.Write("Please enter the id of the room that you want to delete : ");
+            int deletedId = int.Parse(Console.ReadLine());
+            return deletedId;
+        }
         public static Tuple<string, int> AddRoom()
         {
             Console.WriteLine("Choose a room to add:");

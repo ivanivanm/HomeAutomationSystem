@@ -113,9 +113,9 @@ namespace PresentationLayer.Tools
             {
                 Console.WriteLine("Enter the direction: ");
                 Console.WriteLine("Up - 1 " +
-                                  "\nCenter - 2" +
-                                  "\nDown - 3" +
-                                  "\nAuto - 4"
+                                  "\nDown - 2" +
+                                  "\nLeft - 3" +
+                                  "\nRight - 4"
                                   );
                 int direction = int.Parse(Console.ReadLine());
                 return direction;
@@ -141,7 +141,7 @@ namespace PresentationLayer.Tools
             bool choice = bool.Parse(Console.ReadLine());
             if (choice)
             {
-                Console.WriteLine("Enter the minutes to the late start:");
+                Console.Write("Enter the minutes to the late start:");
                 int minutes = int.Parse(Console.ReadLine());
                 return minutes;
             }

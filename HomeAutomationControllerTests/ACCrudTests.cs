@@ -104,7 +104,11 @@ namespace HomeAutomationControllerTests
             ac0.Name = "AC1";
             ac0.SelfCleaning = false;
 
-             Is0Updated = (
+            _airConditionerContext.Update(ac0, false);
+
+            ac0 = _airConditionerContext.Get(1, true, false);
+
+            Is0Updated = (
                 (ac0.IsOn == true)
                 && (ac0.Temperature == 10)
                 && (ac0.AirDir == AirConditioner.Direction.Right)

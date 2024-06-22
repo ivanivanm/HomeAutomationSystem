@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "Presen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomationControllerTests", "HomeAutomationControllerTests\HomeAutomationControllerTests.csproj", "{F484947D-DE23-4673-9EE7-564EB0671B02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessGUI", "BusinessGUI\BusinessGUI.csproj", "{4D4B546E-7A50-4A1D-B2DD-1E7BDA7BC31A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessGUI", "BusinessGUI\BusinessGUI.csproj", "{4D4B546E-7A50-4A1D-B2DD-1E7BDA7BC31A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessCLI", "BusinessCLI\BusinessCLI.csproj", "{A58A41BF-F686-4BB5-BEB5-7942525C7A13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4D4B546E-7A50-4A1D-B2DD-1E7BDA7BC31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D4B546E-7A50-4A1D-B2DD-1E7BDA7BC31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D4B546E-7A50-4A1D-B2DD-1E7BDA7BC31A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A58A41BF-F686-4BB5-BEB5-7942525C7A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A58A41BF-F686-4BB5-BEB5-7942525C7A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A58A41BF-F686-4BB5-BEB5-7942525C7A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A58A41BF-F686-4BB5-BEB5-7942525C7A13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

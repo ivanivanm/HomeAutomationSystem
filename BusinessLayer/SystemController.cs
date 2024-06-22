@@ -18,24 +18,29 @@ using PresentationLayer.Tools;
 
 namespace BusinessLayer
 {
-    internal class SystemController
+    public class SystemController
     {
         private Home model;
         private HomeAutomationDbContext _db;
 
         public SystemController()
         {
-            if (_db.Home.Count() == 0)
+            _db = new HomeAutomationDbContext();
+
+            if (_db.Home.ToList().Count == 0)
             {
                 // nqmame ime
                 string name = HomeClass.WelcomeHomeFirstTime();
                 // dobavqme obekta
                 _db.Home.Add(new Home(name));
+                _db.SaveChanges();               
             }
             else
             {
                 HomeClass.WelcomeHome(_db.Home.ToList()[0].Name);
             }
+
+            model = _db.Home.ToList()[0];
 
             AirConditionerContext acContext = new AirConditionerContext(_db);
             FridgeContext fridgeContext = new FridgeContext(_db);
@@ -118,6 +123,7 @@ namespace BusinessLayer
                                                     if (newTemperature is not null)
                                                     {
                                                         chosenAC.Temperature = (int)newTemperature;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -127,6 +133,7 @@ namespace BusinessLayer
                                                     if (newOnOff is not null)
                                                     {
                                                         chosenAC.IsOn = (bool)newOnOff;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -154,15 +161,17 @@ namespace BusinessLayer
                                                     if (newAirDir is not null)
                                                     {
                                                         chosenAC.AirDir = (AirConditioner.Direction)newAirDir;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
                                                 case 4:
-                                                    Console.Write("Current mode : {0}", chosenAC.ACMode);
+                                                    Console.WriteLine("Current mode : {0}", chosenAC.ACMode);
                                                     int? newMode = AirConditioningOptions.Mode();
                                                     if (newMode is not null)
                                                     {
                                                         chosenAC.ACMode = (int)newMode;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -172,6 +181,7 @@ namespace BusinessLayer
                                                     if (newSpeed is not null)
                                                     {
                                                         chosenAC.AirSpeed = (int)newSpeed;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -181,6 +191,7 @@ namespace BusinessLayer
                                                     if (newLateStart is not null)
                                                     {
                                                         chosenAC.LateStart = (int)newLateStart;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -190,6 +201,7 @@ namespace BusinessLayer
                                                     if (newLateStop is not null)
                                                     {
                                                         chosenAC.LateStop = (int)newLateStop;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -199,6 +211,7 @@ namespace BusinessLayer
                                                     if (newTurbo is not null)
                                                     {
                                                         chosenAC.Turbo = (bool)newTurbo;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -208,6 +221,7 @@ namespace BusinessLayer
                                                     if (newSelfCleaning is not null)
                                                     {
                                                         chosenAC.SelfCleaning = (bool)newSelfCleaning;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
                                                 case 0:
@@ -235,6 +249,7 @@ namespace BusinessLayer
                                                     if (newTemperature is not null)
                                                     {
                                                         chosenFridge.Temperature = (int)newTemperature;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -244,6 +259,7 @@ namespace BusinessLayer
                                                     if (newOnOff is not null)
                                                     {
                                                         chosenFridge.IsOn = (bool)newOnOff;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -253,6 +269,7 @@ namespace BusinessLayer
                                                     if (newEnergyEffectiveness is not null)
                                                     {
                                                         chosenFridge.EnergyEffectiveness = (bool)newEnergyEffectiveness;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -262,6 +279,7 @@ namespace BusinessLayer
                                                     if (newSmartCooling is not null)
                                                     {
                                                         chosenFridge.SmartCooling = (bool)newSmartCooling;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
 
@@ -288,6 +306,7 @@ namespace BusinessLayer
                                                     if (newOnOff is not null)
                                                     {
                                                         chosenTv.IsOn = (bool)newOnOff;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
                                                 case 2:
@@ -296,6 +315,7 @@ namespace BusinessLayer
                                                     if (newVolume is not null)
                                                     {
                                                         chosenTv.Volume = (int)newVolume;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
                                                 case 3:
@@ -304,6 +324,7 @@ namespace BusinessLayer
                                                     if (newLightnessFactor is not null)
                                                     {
                                                         chosenTv.LightnessFactor = (int)newLightnessFactor;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
                                                 case 4:
@@ -312,6 +333,7 @@ namespace BusinessLayer
                                                     if (newNightMode is not null)
                                                     {
                                                         chosenTv.NightMode = (bool)newNightMode;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
                                                 case 0:
@@ -335,6 +357,7 @@ namespace BusinessLayer
                                                     if (newOnOff is not null)
                                                     {
                                                         chosenLamp.IsOn = (bool)newOnOff;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
                                                 case 2:
@@ -343,6 +366,7 @@ namespace BusinessLayer
                                                     if (newLightnessFactor is not null)
                                                     {
                                                         chosenLamp.LightnessFactor = (int)newLightnessFactor;
+                                                        _db.SaveChanges();
                                                     }
                                                     break;
                                                 case 0:
@@ -415,6 +439,24 @@ namespace BusinessLayer
                                     Console.Write("Please enter the Id of the tool that you want to delete : ");
                                     chosenToolId = int.Parse(Console.ReadLine());
 
+                                    switch (chosenToolType.ToUpper())
+                                    {
+                                        case "AC":
+                                            acContext.Remove(chosenToolId);
+                                            break;
+                                        case "F":
+                                            fridgeContext.Remove(chosenToolId);
+                                            break;
+                                        case "L":
+                                            lampContext.Remove(chosenToolId);
+                                            break;
+                                        case "TV":
+                                            tvContext.Remove(chosenToolId);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+
                                     break;
                                 case 0:
                                     break;
@@ -462,8 +504,7 @@ namespace BusinessLayer
 
                         Console.WriteLine();
 
-                        Console.Write("Please enter the Id of the room which you want to delete : ");
-                        int deletedId = int.Parse(Console.ReadLine());
+                        int deletedId = HomeClass.DeleteRoom();
                         roomContext.Remove(deletedId);
                         break;
 
